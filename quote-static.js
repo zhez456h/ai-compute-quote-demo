@@ -1,0 +1,1 @@
+document.addEventListener('click',e=>{const b=e.target.closest('#saveBtn,#checkSources,#generateReport,a[href*=logout]');if(b){e.preventDefault();e.stopImmediatePropagation();demoNotice('静态演示：可浏览原有数据、报价和报告；不保存到服务器或生成实时情报。');}},true);

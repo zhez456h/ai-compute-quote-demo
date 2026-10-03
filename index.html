@@ -1,2 +1,467 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=https://quote.goodbye.best/"><link rel="canonical" href="https://quote.goodbye.best/"><title>AI 算力报价</title></head><body><p>正在打开原项目：<a href="https://quote.goodbye.best/">AI 算力报价</a></p><p>此地址跳转到原服务器运行的项目。原页面、内容、功能和登录流程保持原样。</p></body></html>
+
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AI算力市场情报与智能报价系统</title>
+
+    <style>
+
+        :root{--nav:#06273d;--nav2:#0c3b57;--blue:#3b82f6;--cyan:#13b8a6;--red:#ef4444;--orange:#f59e0b;--green:#10b981;--ink:#1f2a44;--muted:#7b879a;--line:#e5eaf1;--bg:#f3f7fa}
+
+        *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:14px}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
+
+        .login-page{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 20% 20%,#2c8aa4,transparent 36%),linear-gradient(145deg,#062b43,#0d526b)}
+
+        .login-card{width:min(430px,92vw);background:#fff;border-radius:16px;padding:42px 40px;box-shadow:0 24px 70px #001e3266}.login-logo{width:58px;height:58px;border-radius:15px;background:linear-gradient(145deg,#40a6ff,#13b8a6);display:grid;place-items:center;color:#fff;font-size:25px;font-weight:800;margin:0 auto 18px}.login-card h1{margin:0;text-align:center;font-size:25px}.login-card p{text-align:center;color:var(--muted);margin:10px 0 28px}.login-card input{width:100%;padding:13px 14px;margin:7px 0;border:1px solid #dbe2ea;border-radius:8px;outline:none}.login-card input:focus{border-color:#409eff;box-shadow:0 0 0 3px #409eff18}.login-card button{width:100%;padding:13px;margin-top:14px;border:0;border-radius:8px;background:linear-gradient(90deg,#168ac1,#13aa9c);color:#fff}.login-tip{margin-top:20px;padding:12px;background:#f4f8fa;color:#667085;font-size:13px;border-radius:7px}.login-error{background:#fff0f0;color:#d93025;padding:10px;border-radius:6px;margin-bottom:10px}
+
+        .sidebar{position:fixed;inset:0 auto 0 0;width:226px;background:var(--nav);color:#c9d8e7;z-index:5;overflow:auto}.brand{height:68px;display:flex;align-items:center;gap:10px;padding:0 20px;font-size:17px;font-weight:700;color:#fff;border-bottom:1px solid #ffffff15}.brand-mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#38a8ff,#13c2a5);display:grid;place-items:center}.nav{padding:13px 0 30px}.nav-label{padding:14px 22px 7px;color:#6f8da0;font-size:12px}.nav button{display:flex;align-items:center;gap:12px;width:100%;height:47px;padding:0 22px;border:0;background:transparent;color:#c4d3df;text-align:left}.nav button:hover,.nav button.active{background:var(--nav2);color:#fff;border-left:3px solid #20c9b1;padding-left:19px}.nav-icon{width:20px;text-align:center;font-size:17px}
+
+        .main{margin-left:226px;min-height:100vh}.topbar{height:68px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 27px;box-shadow:0 1px 7px #1c334412;position:sticky;top:0;z-index:4}.top-title{font-size:18px;font-weight:700}.top-title small{display:block;font-weight:400;color:#98a2b2;font-size:11px;margin-top:3px}.user{display:flex;align-items:center;gap:10px;color:#556070}.avatar{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:var(--cyan);color:#fff}.logout{color:#7a8492;text-decoration:none;font-size:13px}.content{padding:25px}.page{display:none}.page.active{display:block}.page-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px}.page-head h2{margin:0;font-size:24px}.page-head p{margin:6px 0 0;color:var(--muted)}.chip{background:#e8f6f4;color:#078878;padding:7px 12px;border-radius:18px;font-size:12px}
+
+        .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}.card,.panel{background:#fff;border:1px solid #edf0f4;border-radius:12px;box-shadow:0 4px 18px #21334b0b}.card{padding:20px;position:relative;overflow:hidden}.card:after{content:"";position:absolute;right:-20px;top:-20px;width:75px;height:75px;border-radius:50%;background:#3b82f60b}.card-label{color:#748096;font-size:13px}.card-value{font-size:27px;font-weight:700;margin-top:9px}.card-note{margin-top:4px;font-size:12px;color:var(--green)}.danger{color:var(--red)!important}.panel{padding:20px;margin-bottom:18px}.panel-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}.panel h3{margin:0;font-size:17px}.grid-2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.grid-equal{display:grid;grid-template-columns:1fr 1fr;gap:18px}.kpi-chart{display:grid;gap:13px}.bar-row{display:grid;grid-template-columns:125px 1fr 65px;align-items:center;gap:12px}.bar{height:9px;background:#edf1f5;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#438df5,#19bba2);border-radius:8px}.bar i.orange{background:linear-gradient(90deg,#f7b84b,#ef6e53)}.bar-value{text-align:right;font-weight:700}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{padding:6px 10px;border-radius:16px;background:#f0f5fb;color:#52708f;font-size:12px}.tag.hot{background:#fff0e8;color:#e45c28}.ai-box{background:linear-gradient(135deg,#ecf8ff,#edfdf8);border:1px solid #cfecea;border-radius:12px;padding:19px}.ai-title{display:flex;align-items:center;gap:9px;font-weight:700;color:#17687b;margin-bottom:12px}.ai-list{display:grid;gap:10px}.ai-item{display:flex;gap:10px;line-height:1.55}.ai-dot{width:7px;height:7px;border-radius:50%;background:#18b89f;margin-top:7px;flex:0 0 auto}
+
+        .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input,.toolbar select{border:1px solid #dce3eb;background:#fff;border-radius:7px;padding:9px 11px;outline:none}.toolbar input{min-width:260px}.primary,.secondary,.danger-btn{border:1px solid #d7e0ea;border-radius:7px;background:#fff;padding:9px 14px}.primary{background:#168fc1;color:#fff;border-color:#168fc1}.secondary{color:#496174}.danger-btn{color:#d94343;border-color:#f0bbbb}.count-note{color:var(--muted);align-self:center;margin-left:auto}
+
+        .intel-list{display:grid;gap:12px}.intel-card{background:#fff;border:1px solid #e7ecf2;border-radius:11px;padding:17px 18px;display:grid;grid-template-columns:1fr auto;gap:18px}.intel-title{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:8px}.intel-summary{color:#59667a;line-height:1.65}.intel-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:11px;color:#8a95a5;font-size:12px}.pill{padding:3px 8px;border-radius:10px;background:#eef3f8;color:#60738a}.pill.high{background:#ffeded;color:#d93636}.pill.medium{background:#fff3da;color:#d58712}.pill.positive{background:#e9f9f3;color:#128b66}.pill.negative{background:#ffeded;color:#d93636}.intel-open{align-self:start;text-decoration:none;color:#168fc1;white-space:nowrap}.empty{padding:55px;text-align:center;color:#8a94a3}
+
+        .source-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.mini{background:#f8fafc;border-radius:9px;padding:14px}.mini b{font-size:21px;display:block;margin-top:5px}.data-table{width:100%;border-collapse:collapse}.data-table th{text-align:left;background:#f5f8fb;color:#6e7c8f;font-weight:600;padding:11px 12px;border-bottom:1px solid var(--line)}.data-table td{padding:11px 12px;border-bottom:1px solid #edf0f4}.status{display:inline-flex;align-items:center;gap:6px}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}.status.failed:before{background:var(--red)}.right{text-align:right!important}.table-wrap{overflow:auto}.source-url{max-width:270px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#61809d}
+
+        .report-card{display:grid;grid-template-columns:1fr auto;gap:14px;padding:17px 0;border-bottom:1px solid #edf0f4}.report-card:last-child{border-bottom:0}.report-card h4{margin:0 0 7px;font-size:15px}.report-body{display:none;margin-top:14px;background:#f7fafc;border-radius:9px;padding:18px;line-height:1.75}.report-body.show{display:block}.report-body h4{color:#126a7a}.report-actions{display:flex;gap:7px;align-items:start}
+
+        .quote-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}.quote-tab{border:1px solid #d7e0ea;border-radius:8px;background:#fff;padding:10px 14px;text-align:left}.quote-tab small{display:block;color:#8b96a5;margin-top:4px}.quote-tab.active{background:#eaf8f7;color:#067f73;border-color:#7ed7cd}.quote-tab.active small{color:#159588}.quote-panel{overflow:hidden;padding:0}.quote-head{display:flex;align-items:center;justify-content:space-between;padding:19px 21px}.quote-head h3{margin:0}.quote-meta{font-size:12px;color:#7c8797;margin-top:6px}.quote-table{width:100%;border-collapse:collapse;min-width:980px}.quote-table th{background:#315b9a;color:#fff;font-size:14px;padding:11px 9px;border:1px solid #b7c4d7}.quote-table td{padding:8px 9px;border:1px solid #cbd3dc}.quote-table tbody tr:nth-child(odd){background:#dff1e1}.quote-table tbody tr:nth-child(even){background:#f8f8f8}.money{color:#df1818;font-weight:700;text-align:right}.center{text-align:center}.quote-table td[contenteditable=true],.editable[contenteditable=true]{outline:2px solid #5da6ff;outline-offset:-2px;background:#fff}.extras{background:#fff1c8;padding:13px 21px;border-top:1px solid #ead493;display:grid;gap:7px}.extra-row{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:700;color:#d91f1f}.total-box{display:flex;justify-content:flex-end;gap:45px;padding:16px 22px;background:#fff7d9;color:#d61616;font-size:18px;font-weight:700}.total-box.grand{background:#ffefb8;font-size:21px}.quote-ai{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;padding:16px 20px;background:#f0fbfa;border-top:1px solid #cfeee9}.quote-ai .mini{background:#fff}.quote-ai span{color:#758195;font-size:12px}.quote-ai b{font-size:16px;margin-top:7px}.toast{position:fixed;right:26px;top:82px;background:#26384c;color:#fff;padding:12px 18px;border-radius:7px;opacity:0;pointer-events:none;transition:.25s;z-index:9}.toast.show{opacity:1}.muted{color:var(--muted)}
+
+        .catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.product{padding:18px;border:1px solid #e3e9ef;border-radius:11px;background:#fff}.product-code{font-size:12px;color:#119d8c}.product h4{margin:7px 0 12px}.product-spec{color:#69768a;line-height:1.7}.product-price{font-size:20px;font-weight:700;margin-top:14px;color:#e34040}.history-row{display:grid;grid-template-columns:180px 1fr 130px 95px;gap:15px;align-items:center;padding:13px 0;border-bottom:1px solid #edf0f4}.trend-up{color:#e44141}.trend-down{color:#0d9c71}
+
+        @media(max-width:1120px){.cards{grid-template-columns:repeat(2,1fr)}.grid-2,.grid-equal{grid-template-columns:1fr}.quote-ai,.source-summary{grid-template-columns:repeat(2,1fr)}.catalog{grid-template-columns:repeat(2,1fr)}}
+
+        @media(max-width:760px){.sidebar{width:72px}.brand{justify-content:center;padding:0;font-size:0}.nav-label{display:none}.nav button{justify-content:center;padding:0;font-size:0}.nav button:hover,.nav button.active{padding:0;border-left:0}.nav-icon{font-size:18px}.main{margin-left:72px}.content{padding:15px}.cards,.quote-ai,.source-summary,.catalog{grid-template-columns:1fr}.page-head{align-items:flex-start;flex-direction:column;gap:10px}.topbar{padding:0 14px}.user>span:not(.avatar){display:none}.intel-card{grid-template-columns:1fr}.toolbar input{min-width:180px;flex:1}.history-row{grid-template-columns:1fr 1fr}.history-row .bar{grid-column:1/-1}}
+
+        @media print{.sidebar,.topbar,.toolbar,.quote-tabs,.quote-head button,.toast{display:none!important}.main{margin:0}.content{padding:0}.page{display:none!important}.page.active{display:block!important}.panel{box-shadow:none;border:0}}
+
+    </style>
+
+<script src="demo.js"></script></head>
+
+<body>
+
+<aside class="sidebar"><div class="brand"><span class="brand-mark">S</span><span>算力情报中心</span></div><nav class="nav">
+
+    <div class="nav-label">市场情报</div>
+
+    <button class="active" data-page="dashboard" data-title="监控看板"><span class="nav-icon">◉</span>监控看板</button>
+
+    <button data-page="intelligence" data-title="情报库"><span class="nav-icon">▤</span>情报库</button>
+
+    <button data-page="reports" data-title="报告中心"><span class="nav-icon">▣</span>报告中心</button>
+
+    <button data-page="sources" data-title="数据源管理"><span class="nav-icon">◎</span>数据源管理</button>
+
+    <div class="nav-label">销售决策</div>
+
+    <button data-page="quotes" data-title="报价生成"><span class="nav-icon">▦</span>报价生成</button>
+
+    <button data-page="catalog" data-title="产品目录"><span class="nav-icon">◇</span>产品目录</button>
+
+    <button data-page="history" data-title="历史喂价"><span class="nav-icon">⌁</span>历史喂价</button>
+
+</nav></aside>
+
+<main class="main">
+
+    <header class="topbar"><div class="top-title" id="topTitle">监控看板<small>系统概览与统计数据</small></div><div class="user"><span class="chip">智能分析在线</span><span class="avatar">A</span><span>超级管理员</span><a class="logout" href="/?logout=1">退出</a></div></header>
+
+    <div class="content">
+
+        <section class="page active" id="dashboard">
+
+            <div class="page-head"><div><h2>市场情报监控</h2><p>GPU、算力、数据中心、价格、政策与竞品动态</p></div><span class="chip" id="dashboardTime"></span></div>
+
+            <div class="cards">
+
+                <div class="card"><div class="card-label">情报总量</div><div class="card-value">222</div><div class="card-note">今日新增 19 条</div></div>
+
+                <div class="card"><div class="card-label">本周新增</div><div class="card-value">59</div><div class="card-note">覆盖中、东南亚、俄罗斯</div></div>
+
+                <div class="card"><div class="card-label">高风险预警</div><div class="card-value danger">9</div><div class="card-note danger">出口管制 / 安全 / 供应链</div></div>
+
+                <div class="card"><div class="card-label">信息源健康</div><div class="card-value">25 / 44</div><div class="card-note">25 成功 · 19 待修复</div></div>
+
+            </div>
+
+            <div class="grid-2">
+
+                <div class="panel"><div class="panel-title"><h3>区域情报分布</h3><span class="muted">共 222 条</span></div><div class="kpi-chart">
+
+                    <div class="bar-row"><span>中国 CN</span><div class="bar"><i style="width:44.6%"></i></div><b class="bar-value">99</b></div>
+
+                    <div class="bar-row"><span>东南亚 SEA</span><div class="bar"><i style="width:34.7%"></i></div><b class="bar-value">77</b></div>
+
+                    <div class="bar-row"><span>俄罗斯 RU</span><div class="bar"><i style="width:20.7%"></i></div><b class="bar-value">46</b></div>
+
+                </div></div>
+
+                <div class="panel"><div class="panel-title"><h3>情报类型</h3><span class="muted">技术占比 73.9%</span></div><div class="kpi-chart">
+
+                    <div class="bar-row"><span>技术动态</span><div class="bar"><i style="width:73.9%"></i></div><b class="bar-value">164</b></div>
+
+                    <div class="bar-row"><span>竞品动态</span><div class="bar"><i class="orange" style="width:12.2%"></i></div><b class="bar-value">27</b></div>
+
+                    <div class="bar-row"><span>价格行情</span><div class="bar"><i class="orange" style="width:7.2%"></i></div><b class="bar-value">16</b></div>
+
+                    <div class="bar-row"><span>政策风险</span><div class="bar"><i class="orange" style="width:6.7%"></i></div><b class="bar-value">15</b></div>
+
+                </div></div>
+
+            </div>
+
+            <div class="grid-equal">
+
+                <div class="panel"><div class="panel-title"><h3>热点关键词</h3><span class="muted">自动抽取</span></div><div class="tags"><span class="tag hot">RTX 9</span><span class="tag hot">AMD 4</span><span class="tag">RX 4</span><span class="tag">5090 3</span><span class="tag">Rubin 3</span><span class="tag">GPU价格</span><span class="tag">HBM4</span><span class="tag">数据中心</span><span class="tag">出口管制</span><span class="tag">算力租赁</span></div></div>
+
+                <div class="ai-box"><div class="ai-title">✦ 智能决策摘要</div><div class="ai-list" id="dashboardAi"></div></div>
+
+            </div>
+
+            <div class="panel"><div class="panel-title"><h3>报价经营概览</h3><span class="muted">与报价中心实时联动</span></div><div class="source-summary"><div class="mini">报价方案<b id="schemeCount">0</b></div><div class="mini">配置部件<b id="itemCount">0</b></div><div class="mini">单台最高报价<b id="maxQuote">¥0</b></div><div class="mini">批量报价总额<b id="sumQuote">¥0</b></div></div><div class="kpi-chart" id="amountBars"></div></div>
+
+        </section>
+
+
+
+        <section class="page" id="intelligence">
+
+            <div class="page-head"><div><h2>市场情报库</h2><p>每条信息包含来源、区域、类型、情绪、风险与智能摘要</p></div><span class="chip">已收录 222 条</span></div>
+
+            <div class="toolbar"><input id="intelSearch" placeholder="搜索 GPU、价格、企业或摘要…"><select id="regionFilter"><option value="">全部区域</option><option>CN</option><option>SEA</option><option>RU</option></select><select id="typeFilter"><option value="">全部类型</option><option value="Price">价格</option><option value="Tech">技术</option><option value="Competitor">竞品</option><option value="Policy">政策</option></select><select id="riskFilter"><option value="">全部风险</option><option value="high">高风险</option><option value="medium">中风险</option><option value="low">低风险</option></select><span class="count-note" id="intelCount"></span></div>
+
+            <div class="intel-list" id="intelList"></div>
+
+        </section>
+
+
+
+        <section class="page" id="reports">
+
+            <div class="page-head"><div><h2>智能报告中心</h2><p>根据当前情报、风险和价格信号自动形成经营建议</p></div><button class="primary" id="generateReport">一键生成最新周报</button></div>
+
+            <div class="grid-2"><div class="panel"><div class="panel-title"><h3>报告列表</h3><span class="muted">自动归档</span></div><div id="reportList"></div></div><div class="ai-box"><div class="ai-title">✦ 本周核心研判</div><div class="ai-list"><div class="ai-item"><i class="ai-dot"></i><span>RTX PRO 6000 海外建议价显著上调，8 卡方案 GPU 成本占比高，建议报价有效期缩短至 3 天。</span></div><div class="ai-item"><i class="ai-dot"></i><span>亚洲渠道显卡存在 20%–40% 涨价预警，应优先锁定库存或在报价中加入价格保护条款。</span></div><div class="ai-item"><i class="ai-dot"></i><span>内存短缺预期可能延续至 2028 年，高配 32 条内存方案需要单独锁价。</span></div><div class="ai-item"><i class="ai-dot"></i><span>俄罗斯算力短缺与本地替代需求并存，但出口管制和合规风险较高。</span></div></div></div></div>
+
+        </section>
+
+
+
+        <section class="page" id="sources">
+
+            <div class="page-head"><div><h2>数据源管理</h2><p>原站采集范围已复核：国内、东南亚、俄罗斯共 44 个来源</p></div><button class="primary" id="checkSources">检测全部来源</button></div>
+
+            <div class="panel"><div class="source-summary"><div class="mini">来源总数<b>44</b></div><div class="mini">采集成功<b style="color:#0b9d74">25</b></div><div class="mini">采集失败<b style="color:#e04343">19</b></div><div class="mini">累计抓取<b>1,134</b></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>信息源</th><th>区域</th><th>类型</th><th>监控关键词</th><th>累计</th><th>状态</th></tr></thead><tbody id="sourceRows"></tbody></table></div></div>
+
+        </section>
+
+
+
+        <section class="page" id="quotes">
+
+            <div class="page-head"><div><h2>智能报价生成</h2><p>编辑任一数字，行小计、单台、批量、看板与智能建议同时更新</p></div><span class="chip">人民币 CNY · 含税运</span></div>
+
+            <div class="quote-tabs" id="quoteTabs"></div>
+
+            <div class="panel quote-panel"><div class="quote-head"><div><h3 id="quoteName"></h3><div class="quote-meta" id="quoteMeta"></div></div><div><button class="secondary" id="editBtn">编辑报价</button> <button class="primary" id="saveBtn" style="display:none">保存全部联动结果</button></div></div><div id="quoteContent"></div></div>
+
+        </section>
+
+
+
+        <section class="page" id="catalog"><div class="page-head"><div><h2>产品目录</h2><p>从现有 BOM 自动整理的服务器方案 + 奥尼 AI 终端产品</p></div><span class="chip">5 个在售方案</span></div><div class="catalog" id="catalogGrid"></div><div style="margin:28px 0 14px;font-size:17px;font-weight:700">奥尼 AI 终端产品 <small style="color:#7b879a;font-weight:400">（引自《奥尼AI工作站产品目录》，含税人民币参考价，USD 按 1 USD=6.7804 CNY 换算）</small></div><div class="catalog" id="wsGrid"></div></section>
+
+        <section class="page" id="history"><div class="page-head"><div><h2>历史喂价</h2><p>将市场价格信号与当前采购单价放在一起判断</p></div><span class="chip">智能价格预警</span></div><div class="panel"><div class="panel-title"><h3>关键部件价格监测</h3><span class="muted">市场信号更新于 2026-08-14</span></div><div id="historyRows"></div></div></section>
+
+    </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const quotes = [{"code":"QT-20260814-001","name":"8卡 RTX PRO 6000 企业级服务器方案","shortName":"8卡标准方案","date":"2026-08-14","count":3,"warranty":50000,"assembly":2000,"items":[{"part":"6U 服务器机箱","spec":"6U 8卡主板 Intel 4代/5代直通","quantity":1,"unit":"套","unitPrice":48000},{"part":"导轨","spec":"导轨套件","quantity":1,"unit":"套","unitPrice":0},{"part":"CPU","spec":"Intel Xeon Platinum 8558 2.1GHz 48C 96T 350W（5200）","quantity":2,"unit":"颗","unitPrice":24000},{"part":"内存","spec":"64GB DDR5 5600 ECC RDIMM 2Rx4","quantity":16,"unit":"条","unitPrice":16000},{"part":"SSD","spec":"3.84TB NVMe U.2 Enterprise","quantity":2,"unit":"块","unitPrice":10000},{"part":"GPU 显卡","spec":"NVIDIA RTX PRO 6000 96GB 服务器版（Blackwell）","quantity":8,"unit":"张","unitPrice":128000},{"part":"网卡 25GbE","spec":"2-port 25Gb optical interface PCI-E NIC","quantity":1,"unit":"块","unitPrice":2000},{"part":"电源","spec":"2700W 80Plus Platinum PSU","quantity":4,"unit":"个","unitPrice":0},{"part":"网卡 CX7","spec":"NVIDIA ConnectX-7 200G 双口","quantity":1,"unit":"块","unitPrice":10000},{"part":"网卡 CX8","spec":"NVIDIA ConnectX-8 800G 单口（900-9X81E-00EX-STO）","quantity":1,"unit":"块","unitPrice":16000},{"part":"机械硬盘","spec":"10TB SATA 3.5\" Enterprise（RAID5 6盘）","quantity":6,"unit":"块","unitPrice":2800}]},{"code":"QT-20260814-002","name":"2卡 RTX PRO 6000 服务器方案","shortName":"2卡方案","date":"2026-08-14","count":1,"warranty":15000,"assembly":500,"items":[{"part":"6U 服务器机箱","spec":"2U机头","quantity":1,"unit":"套","unitPrice":20000},{"part":"CPU","spec":"Intel Xeon Platinum 8558P","quantity":2,"unit":"颗","unitPrice":40000},{"part":"内存","spec":"64GB DDR5 5600 ECC RDIMM 2Rx4","quantity":4,"unit":"条","unitPrice":14500},{"part":"SSD","spec":"960G SSD","quantity":2,"unit":"块","unitPrice":3700},{"part":"GPU 显卡","spec":"NVIDIA RTX PRO 6000 96GB 服务器版（Blackwell）","quantity":2,"unit":"张","unitPrice":128000},{"part":"阵列卡","spec":"博通 9560-8I","quantity":1,"unit":"块","unitPrice":6200},{"part":"电源","spec":"2700W 80Plus Platinum PSU","quantity":2,"unit":"个","unitPrice":0},{"part":"网口","spec":"千兆网口","quantity":2,"unit":"块","unitPrice":580},{"part":"网口","spec":"万兆网口","quantity":1,"unit":"块","unitPrice":750}]},{"code":"QT-20260814-003","name":"8卡 RTX PRO 6000 高配服务器方案","shortName":"8卡高配方案","date":"2026-08-14","count":1,"warranty":50000,"assembly":2000,"items":[{"part":"6U 服务器机箱","spec":"6U 8卡主板 Intel 4代/5代直通","quantity":1,"unit":"套","unitPrice":48000},{"part":"导轨","spec":"套件","quantity":1,"unit":"套","unitPrice":0},{"part":"CPU","spec":"Intel Xeon Platinum 6530P","quantity":2,"unit":"颗","unitPrice":23000},{"part":"内存","spec":"64GB DDR5 6400 ECC RDIMM 2Rx4","quantity":32,"unit":"条","unitPrice":16400},{"part":"SSD","spec":"Intel D3-S4520 480GB（国产硬盘）","quantity":1,"unit":"块","unitPrice":2100},{"part":"SSD","spec":"Intel / Solidigm D7-P5520 7.68TB（国产硬盘）","quantity":2,"unit":"块","unitPrice":21500},{"part":"GPU 显卡","spec":"NVIDIA RTX PRO 6000 96GB 服务器版（Blackwell）","quantity":8,"unit":"张","unitPrice":125000},{"part":"网卡 25GbE","spec":"博通 9560-8I","quantity":1,"unit":"块","unitPrice":6200},{"part":"电源","spec":"2700W 80Plus Platinum PSU","quantity":4,"unit":"个","unitPrice":0},{"part":"网卡 CX7","spec":"NVIDIA/Mellanox MCX755106AS 系列 200G","quantity":1,"unit":"块","unitPrice":10000},{"part":"网卡 CX8","spec":"","quantity":1,"unit":"块","unitPrice":0},{"part":"电源线","spec":"C19-C20 1.5m JP","quantity":4,"unit":"条","unitPrice":0}]},{"code":"QT-20260904-001","name":"8卡 RTX 5090 32G 涡轮服务器方案（云尖机头）","shortName":"8卡5090方案","date":"2026-09-04","count":512,"warranty":0,"assembly":0,"items":[{"part":"准系统","spec":"处理器：2颗英特尔至强第四代/五代，单颗最高60核/350W；32个DDR5插槽最高5600MT/s；OCP 3.0网卡；电源2700W*4","quantity":1,"unit":"台","unitPrice":601223.4},{"part":"CPU","spec":"Intel Xeon Gold 6530 32C 270W 2.1GHz 处理器","quantity":2,"unit":"颗","unitPrice":0},{"part":"GPU 显卡","spec":"NVIDIA RTX 5090 32G GDDR7 涡轮卡","quantity":8,"unit":"张","unitPrice":0},{"part":"内存","spec":"32GB DDR5 5600 三星海力士拆新","quantity":16,"unit":"条","unitPrice":0},{"part":"系统盘","spec":"960G SATA SSD 国产铨兴","quantity":2,"unit":"块","unitPrice":0},{"part":"数据盘","spec":"3.84TB NVMe U.2 SSD企业级，读取密集型；国产铨兴","quantity":1,"unit":"块","unitPrice":0},{"part":"网卡","spec":"ConnectX-6 双口25G 迈络思","quantity":1,"unit":"块","unitPrice":0},{"part":"组装测试费","spec":"组装测试包装费","quantity":1,"unit":"项","unitPrice":900},{"part":"运输保险费","spec":"按目的地/货值另算","quantity":1,"unit":"项","unitPrice":1200}]},{"code":"QT-20260814-004","name":"8卡 RTX PRO 5000 72G 涡轮服务器方案（5U）","shortName":"8卡PRO5000方案","date":"2026-08-14","count":1,"warranty":0,"assembly":0,"items":[{"part":"准系统","spec":"处理器：2颗英特尔至强第四代/五代或澜起津逮，单颗最高60核/350W；32个DDR5插槽最高5600MT/s，最大8TB；最多13个x16 PCIe 5.0；前置最大24块3.5\"或50块2.5\"；电源2600W*4","quantity":1,"unit":"台","unitPrice":881988.64},{"part":"CPU","spec":"Intel Xeon Gold 6530 32C 270W 2.1GHz 处理器","quantity":2,"unit":"颗","unitPrice":0},{"part":"GPU 显卡","spec":"NVIDIA RTX PRO 5000 72G GDDR7 涡轮卡","quantity":8,"unit":"张","unitPrice":0},{"part":"内存","spec":"64GB DDR5 5600MHz 国产内存条兆储","quantity":16,"unit":"条","unitPrice":0},{"part":"系统盘","spec":"960GB SATA SSD 国产品牌","quantity":1,"unit":"块","unitPrice":0},{"part":"数据盘","spec":"3.84TB NVMe U.2 SSD企业级，读取密集型；国产品牌","quantity":1,"unit":"块","unitPrice":0},{"part":"网卡","spec":"100G SFP28 双口 网卡","quantity":1,"unit":"块","unitPrice":0},{"part":"组装测试费","spec":"","quantity":1,"unit":"项","unitPrice":0},{"part":"运输保险费","spec":"按目的地/货值另算","quantity":1,"unit":"项","unitPrice":0}]}];
+
+const csrf = "static-demo";
+
+const intelligence = [
+
+ {id:222,title:'Неооблако Nebius Аркадия Воложа увеличило выручку на 454%',url:'https://servernews.ru/1146749',source:'ServerNews-RU',region:'RU',type:'Competitor',sentiment:'Positive',risk:'low',time:'2026-08-14 00:56',summary:'Nebius 2026年Q2营收同比增454%至5.82亿美元，AI云业务增514%，资本支出达57亿美元加码GPU与数据中心建设，反映AI算力市场强势扩张。'},
+
+ {id:221,title:'Samsung、SK hynix 加速 HBM4，内存价格成为下半年焦点',url:'https://www.trendforce.com/news/2026/08/13/news-samsung-sk-hynixs-hbm4-push-puts-hbm-general-memory-pricing-in-the-spotlight-for-2h-earnings/',source:'SerpApi-News[HBM内存价格]',region:'SEA',type:'Price',sentiment:'Neutral',risk:'medium',time:'2026-08-14 00:31',summary:'HBM4量产推进使高带宽内存与通用内存价格成为重点变量，AI服务器内存成本存在继续上行的可能。'},
+
+ {id:220,title:'NVIDIA RTX 50 系列 8 月中位价最高上涨 41%',url:'https://www.techpowerup.com/351508/nvidia-rtx-50-series-median-prices-jump-up-to-41-in-august-with-msrp-now-a-distant-dream',source:'SerpApi-News[GPU价格]',region:'SEA',type:'Price',sentiment:'Negative',risk:'medium',time:'2026-08-14 00:31',summary:'RTX 50系列市场价格与建议零售价明显背离，渠道价格波动加大，建议缩短高端GPU报价有效期并提前锁货。'},
+
+ {id:210,title:'NVIDIA 将 RTX PRO 6000 Blackwell 建议价上调至 16,000 美元',url:'https://www.tomshardware.com/pc-components/gpus/nvidia-doubles-rtx-pro-6000-blackwells-msrp-to-a-staggering-usd16-000-96gb-card-started-pre-orders-below-usd8-000-last-year',source:"Tom's Hardware",region:'CN',type:'Price',sentiment:'Negative',risk:'medium',time:'2026-08-13 00:50',summary:'RTX PRO 6000 Blackwell官方售价相比早期预售近乎翻倍，高配AI工作站和8卡服务器成本压力显著增加，国产替代需求可能提升。'},
+
+ {id:215,title:'AMD Instinct MI455X：CDNA 5 开启下一代 Instinct',url:'https://www.servethehome.com/amd-instinct-mi455x-deep-dive-cdna-5-marks-the-next-era-of-instinct/',source:'ServeTheHome',region:'CN',type:'Tech',sentiment:'Positive',risk:'medium',time:'2026-08-13 06:35',summary:'AMD发布CDNA 5架构MI455X加速器，作为下一代AI服务器及Helios机架系统核心，为NVIDIA之外提供新的算力选项。'},
+
+ {id:211,title:'CoreWeave 证明 2020 年 A100 可持续盈利至 2029 年',url:'https://www.tomshardware.com/tech-industry/coreweave-ceo-mike-intrator-says-it-has-signed-an-a100-contract-running-into-2029',source:"Tom's Hardware",region:'CN',type:'Tech',sentiment:'Positive',risk:'low',time:'2026-08-13 00:50',summary:'A100长期合约延续至2029年，说明老款AI GPU仍有商业价值，可降低部分算力项目的升级压力和折旧风险。'},
+
+ {id:113,title:'亚洲 GPU 涨价预警：技嘉显卡订单预计上调 20%–40%',url:'https://www.tomshardware.com/pc-components/gpus/more-gpu-price-hikes-loom-for-asia-as-japanese-distributor-warns-of-new-increases-cfd-sales-signals-20-percent-to-40-percent-higher-prices-on-gigabyte-graphics-card-orders-starting-this-month',source:"Tom's Hardware",region:'SEA',type:'Price',sentiment:'Negative',risk:'high',time:'2026-08-05 18:49',summary:'日本分销商警告亚洲市场显卡订单本月起涨价20%至40%，可能推高东南亚AI/GPU采购成本，影响预算与交付节奏。'},
+
+ {id:109,title:'三星预计内存短缺将在 2027 年加剧并持续至 2028 年',url:'https://techcrunch.com/2026/07/31/samsung-expects-memory-shortage-to-worsen-through-2027-and-last-until-2028/',source:'TechCrunch-HW',region:'CN',type:'Price',sentiment:'Negative',risk:'high',time:'2026-08-05 18:49',summary:'AI数据中心需求激增推高芯片及终端设备成本，服务器内存采购和项目预算可能持续承压。'},
+
+ {id:96,title:'俄罗斯企业 AI 基础设施成熟度仅 38/100',url:'https://servernews.ru/1145948',source:'ServerNews-RU',region:'RU',type:'Competitor',sentiment:'Negative',risk:'high',time:'2026-08-05 18:23',summary:'俄罗斯企业面临GPU算力与AI人才严重短缺，制约规模化落地，也带来算力租赁、服务器整机与本地替代需求。'},
+
+ {id:91,title:'NVIDIA Vera Rubin POD：七芯片、五机架的 AI 超算平台',url:'https://servernews.ru/1138478',source:'ServerNews-RU',region:'RU',type:'Tech',sentiment:'Positive',risk:'high',time:'2026-08-05 18:22',summary:'Vera Rubin POD含NVL72等五类机架，AI算力达60 EFLOPS；先进NVLink 6和高算力芯片可能受出口管制影响。'},
+
+ {id:82,title:'英伟达为中国市场定制 H20 和 L20 GPU',url:'https://www.ithome.com/tags/%e8%8b%b1%e4%bc%9f%e8%be%be/',source:'IT之家-AI',region:'CN',type:'Policy',sentiment:'Neutral',risk:'high',time:'2026-08-05 12:10',summary:'定制GPU短期缓解国内AI训练需求，但产品性能与供应政策仍存在不确定性，采购需关注合规和持续供货。'},
+
+ {id:158,title:'多家服务器厂商 BMC 严重漏洞存在超过十年',url:'https://servernews.ru/1146412',source:'ServerNews-RU',region:'RU',type:'Tech',sentiment:'Negative',risk:'high',time:'2026-08-09 06:25',summary:'部分主流服务器BMC控制器存在长期未修复漏洞，可能导致远程入侵，服务器交付应增加固件版本和安全基线检查。'}
+
+];
+
+const sources = [
+
+ {name:'中国IDC圈新闻',url:'https://www.idcquan.com/news/',region:'CN',type:'网页',keys:'算力、数据中心',count:644,status:'success'},
+
+ {name:'ServerNews-RU',url:'https://servernews.ru/',region:'RU',type:'网页',keys:'服务器、GPU、数据',count:173,status:'success'},
+
+ {name:'中关村在线-GPU',url:'https://vga.zol.com.cn/',region:'CN',type:'网页',keys:'显卡、RTX、价格',count:154,status:'success'},
+
+ {name:"Tom's Hardware",url:'https://www.tomshardware.com/rss',region:'SEA',type:'RSS',keys:'GPU、服务器、价格',count:64,status:'success'},
+
+ {name:'IT之家-AI',url:'https://www.ithome.com/tag/AI',region:'CN',type:'网页',keys:'GPU、算力、英伟达',count:41,status:'success'},
+
+ {name:'智东西',url:'https://zhidx.com/category/ai',region:'CN',type:'网页',keys:'GPU、算力、大模型',count:23,status:'success'},
+
+ {name:'TechRadar-Asia',url:'https://www.techradar.com/sg',region:'SEA',type:'网页',keys:'GPU',count:22,status:'success'},
+
+ {name:'TechCrunch-HW',url:'https://techcrunch.com/category/hardware/feed/',region:'CN',type:'RSS',keys:'GPU、NVIDIA、数据中心',count:7,status:'success'},
+
+ {name:'ServeTheHome',url:'https://www.servethehome.com/feed/',region:'CN',type:'RSS',keys:'GPU、服务器、数据中心',count:4,status:'success'},
+
+ {name:'C114通信网',url:'https://www.c114.com.cn/news/',region:'CN',type:'网页',keys:'算力、数据中心',count:2,status:'success'},
+
+ {name:'HardwareZone-SG',url:'https://www.hardwarezone.com.sg/tech-news',region:'SEA',type:'网页',keys:'GPU、H100、数据中心',count:0,status:'failed'},
+
+ {name:'BangkokPost-Tech',url:'https://www.bangkokpost.com/tech/',region:'SEA',type:'网页',keys:'GPU、云服务、数据中心',count:0,status:'failed'},
+
+ {name:'TAdviser-IT',url:'https://www.tadviser.ru/',region:'RU',type:'网页',keys:'GPU、IT',count:0,status:'failed'},
+
+ {name:'Habr-硬件',url:'https://habr.com/ru/hubs/hardware/articles/',region:'RU',type:'RSS',keys:'GPU、H100、数据中心',count:0,status:'failed'},
+
+ {name:'量子位',url:'https://www.qbitai.com/category/ai',region:'CN',type:'网页',keys:'GPU、算力、英伟达',count:0,status:'failed'}
+
+];
+
+const reports = [
+
+ {title:'AI算力市场情报周报 2026-08-10 ～ 2026-08-14',time:'2026-08-14 09:00',status:'已生成',content:'本周共监测59条新增情报。GPU及内存价格上行信号增强；RTX PRO 6000报价需缩短有效期；俄罗斯市场存在需求机会，但出口管制和安全合规风险较高。'},
+
+ {title:'高端GPU价格风险专项报告',time:'2026-08-13 14:30',status:'已生成',content:'亚洲渠道涨价预期为20%–40%，RTX PRO 6000海外建议价上调。建议建立采购锁价、报价缓冲和有效期三道机制。'},
+
+ {title:'俄罗斯AI算力市场机会与风险简报',time:'2026-08-11 11:20',status:'已生成',content:'当地AI基础设施成熟度偏低，GPU供给不足带来整机与算力租赁机会；同时必须核查最终用户、用途和出口合规。'}
+
+];
+
+
+
+let activeQuote=0, editing=false;
+
+const money=v=>'¥'+Number(v||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
+
+const esc=v=>String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+
+const num=v=>Number(String(v??0).replace(/[,，￥¥\s]/g,''))||0;
+
+const calcSubtotal=item=>num(item.quantity)*num(item.unitPrice);
+
+const calcTotal=q=>q.items.reduce((s,i)=>s+calcSubtotal(i),0)+num(q.warranty)+num(q.assembly);
+
+const calcGrand=q=>calcTotal(q)*Math.max(1,num(q.count));
+
+const typeName={Price:'价格',Tech:'技术',Competitor:'竞品',Policy:'政策'};
+
+const riskName={high:'高风险',medium:'中风险',low:'低风险'};
+
+const sentimentName={Positive:'利好',Negative:'利空',Neutral:'中性'};
+
+
+
+function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300)}
+
+function refreshDashboard(){
+
+ const totals=quotes.map(calcGrand), unit=quotes.map(calcTotal), max=Math.max(...unit,1);
+
+ document.querySelector('#schemeCount').textContent=quotes.length;
+
+ document.querySelector('#itemCount').textContent=quotes.reduce((n,q)=>n+q.items.length,0);
+
+ document.querySelector('#maxQuote').textContent=money(Math.max(...unit,0));
+
+ document.querySelector('#sumQuote').textContent=money(totals.reduce((a,b)=>a+b,0));
+
+ document.querySelector('#amountBars').innerHTML=quotes.map((q,i)=>`<div class="bar-row"><span>${esc(q.shortName||q.name)}</span><div class="bar"><i style="width:${unit[i]/max*100}%"></i></div><b class="bar-value">${money(unit[i])}</b></div>`).join('');
+
+ const gpuValue=quotes.reduce((s,q)=>s+q.items.filter(i=>String(i.part).includes('GPU')).reduce((a,i)=>a+calcSubtotal(i)*Math.max(1,num(q.count)),0),0);
+
+ const all=totals.reduce((a,b)=>a+b,0)||1;
+
+ document.querySelector('#dashboardAi').innerHTML=`<div class="ai-item"><i class="ai-dot"></i><span>当前报价对 GPU 价格高度敏感，GPU 成本约占全部批量报价的 <b>${(gpuValue/all*100).toFixed(1)}%</b>。</span></div><div class="ai-item"><i class="ai-dot"></i><span>RTX PRO 6000 与亚洲渠道价格均出现上涨信号，建议报价有效期设为 <b>3 天</b>。</span></div><div class="ai-item"><i class="ai-dot"></i><span>32 条内存高配方案受长期缺货预期影响，建议单独锁定内存采购价。</span></div>`;
+
+}
+
+
+
+function renderIntelligence(){
+
+ const keyword=document.querySelector('#intelSearch').value.trim().toLowerCase(),region=document.querySelector('#regionFilter').value,type=document.querySelector('#typeFilter').value,risk=document.querySelector('#riskFilter').value;
+
+ const rows=intelligence.filter(x=>(!keyword||(x.title+x.summary+x.source).toLowerCase().includes(keyword))&&(!region||x.region===region)&&(!type||x.type===type)&&(!risk||x.risk===risk));
+
+ document.querySelector('#intelCount').textContent=`显示 ${rows.length} 条重点情报`;
+
+ document.querySelector('#intelList').innerHTML=rows.length?rows.map(x=>`<article class="intel-card"><div><div class="intel-title">${esc(x.title)}</div><div class="intel-summary">${esc(x.summary)}</div><div class="intel-meta"><span class="pill">${esc(x.source)}</span><span class="pill">${x.region}</span><span class="pill">${typeName[x.type]}</span><span class="pill ${x.risk}">${riskName[x.risk]}</span><span class="pill ${x.sentiment.toLowerCase()}">${sentimentName[x.sentiment]}</span><span>${x.time}</span></div></div><a class="intel-open" href="${esc(x.url)}" target="_blank" rel="noopener">查看来源 ↗</a></article>`).join(''):'<div class="panel empty">没有符合条件的情报</div>';
+
+}
+
+function renderSources(){document.querySelector('#sourceRows').innerHTML=sources.map(s=>`<tr><td><b>${esc(s.name)}</b><div class="source-url">${esc(s.url)}</div></td><td>${s.region}</td><td>${s.type}</td><td>${esc(s.keys)}</td><td>${s.count}</td><td><span class="status ${s.status==='failed'?'failed':''}">${s.status==='success'?'正常':'待修复'}</span></td></tr>`).join('')}
+
+function renderReports(){document.querySelector('#reportList').innerHTML=reports.map((r,i)=>`<div class="report-card"><div><h4>${esc(r.title)}</h4><span class="muted">${r.time} · ${r.status}</span><div class="report-body" id="report-${i}"><h4>智能研判</h4>${esc(r.content)}<h4>建议动作</h4>缩短高风险部件报价有效期；锁定GPU与内存采购价；对俄罗斯订单执行合规核查；交付前增加BMC安全检查。</div></div><div class="report-actions"><button class="secondary" onclick="toggleReport(${i})">查看</button><button class="secondary" onclick="window.print()">打印</button></div></div>`).join('')}
+
+function toggleReport(i){document.querySelector('#report-'+i).classList.toggle('show')}
+
+
+
+function renderTabs(){document.querySelector('#quoteTabs').innerHTML=quotes.map((q,i)=>`<button class="quote-tab ${i===activeQuote?'active':''}" data-index="${i}">${esc(q.shortName||q.name)}<small data-tab-total="${i}">${money(calcTotal(q))} / 台</small></button>`).join('');document.querySelectorAll('.quote-tab').forEach(btn=>btn.onclick=()=>{activeQuote=Number(btn.dataset.index);editing=false;renderTabs();renderQuote()})}
+
+function quoteInsight(q){
+
+ const total=calcTotal(q)||1,gpu=q.items.filter(i=>String(i.part).includes('GPU')).reduce((s,i)=>s+calcSubtotal(i),0),memory=q.items.filter(i=>String(i.part).includes('内存')).reduce((s,i)=>s+calcSubtotal(i),0);
+
+ const exposure=gpu/total*100,buffer=exposure>65?5:3,recommended=Math.ceil(total*(1+buffer/100)/100)*100;
+
+ return {gpu,memory,exposure,buffer,recommended};
+
+}
+
+function renderQuote(){
+
+ const q=quotes[activeQuote];if(!q)return;
+
+ document.querySelector('#quoteName').textContent=q.name;
+
+ document.querySelector('#quoteMeta').textContent=`报价编号：${q.code}　更新日期：${q.date}`;
+
+ const rows=q.items.map((item,i)=>`<tr data-i="${i}"><td class="center">${i+1}</td><td data-key="part" ${editing?'contenteditable="true"':''}>${esc(item.part)}</td><td data-key="spec" ${editing?'contenteditable="true"':''}>${esc(item.spec)}</td><td class="center" data-key="quantity" ${editing?'contenteditable="true"':''}>${esc(item.quantity)}</td><td class="center" data-key="unit" ${editing?'contenteditable="true"':''}>${esc(item.unit)}</td><td class="money" data-key="unitPrice" ${editing?'contenteditable="true"':''}>${item.unitPrice?esc(item.unitPrice):''}</td><td class="money" data-row-total="${i}">${money(calcSubtotal(item))}</td></tr>`).join('');
+
+ const insight=quoteInsight(q);
+
+ document.querySelector('#quoteContent').innerHTML=`<div class="table-wrap"><table class="quote-table"><thead><tr><th>序号</th><th>部件名称</th><th>规格型号</th><th>数量</th><th>单位</th><th>报价单价</th><th>报价小计</th></tr></thead><tbody>${rows}</tbody></table></div><div class="extras"><div class="extra-row"><span>三年维保</span><span class="money editable" data-extra="warranty" ${editing?'contenteditable="true"':''}>${q.warranty||0}</span></div><div class="extra-row"><span>组装压测</span><span class="money editable" data-extra="assembly" ${editing?'contenteditable="true"':''}>${q.assembly||0}</span></div><div class="extra-row"><span>采购台数</span><span class="money editable" data-extra="count" ${editing?'contenteditable="true"':''}>${q.count||1}</span></div></div><div class="total-box"><span>单台合计（含税运 + 3年维保）</span><span id="unitTotal">${money(calcTotal(q))}</span></div><div class="total-box grand"><span><b id="batchCount">${q.count||1}</b> 台合计</span><span id="grandTotal">${money(calcGrand(q))}</span></div><div class="quote-ai"><div class="mini"><span>GPU 成本占比</span><b id="gpuExposure">${insight.exposure.toFixed(1)}%</b></div><div class="mini"><span>内存成本</span><b id="memoryCost">${money(insight.memory)}</b></div><div class="mini"><span>建议风险缓冲</span><b id="riskBuffer">${insight.buffer}%</b></div><div class="mini"><span>智能建议单价</span><b id="recommendedPrice">${money(insight.recommended)}</b></div></div>`;
+
+ document.querySelector('#editBtn').style.display=editing?'none':'';document.querySelector('#saveBtn').style.display=editing?'':'none';
+
+ if(editing)bindLiveEdit();
+
+}
+
+function bindLiveEdit(){
+
+ document.querySelectorAll('.quote-table tbody [data-key]').forEach(cell=>cell.addEventListener('input',()=>{const q=quotes[activeQuote],row=cell.closest('tr'),item=q.items[Number(row.dataset.i)],key=cell.dataset.key;item[key]=['quantity','unitPrice'].includes(key)?num(cell.textContent):cell.textContent.trim();refreshQuoteComputed()}));
+
+ document.querySelectorAll('[data-extra]').forEach(cell=>cell.addEventListener('input',()=>{quotes[activeQuote][cell.dataset.extra]=num(cell.textContent);refreshQuoteComputed()}));
+
+}
+
+function refreshQuoteComputed(){
+
+ const q=quotes[activeQuote];q.items.forEach((item,i)=>{const el=document.querySelector(`[data-row-total="${i}"]`);if(el)el.textContent=money(calcSubtotal(item))});
+
+ const insight=quoteInsight(q);document.querySelector('#unitTotal').textContent=money(calcTotal(q));document.querySelector('#grandTotal').textContent=money(calcGrand(q));document.querySelector('#batchCount').textContent=Math.max(1,num(q.count));document.querySelector('#gpuExposure').textContent=insight.exposure.toFixed(1)+'%';document.querySelector('#memoryCost').textContent=money(insight.memory);document.querySelector('#riskBuffer').textContent=insight.buffer+'%';document.querySelector('#recommendedPrice').textContent=money(insight.recommended);const tab=document.querySelector(`[data-tab-total="${activeQuote}"]`);if(tab)tab.textContent=money(calcTotal(q))+' / 台';refreshDashboard();renderCatalog();renderHistory();
+
+}
+
+function renderCatalog(){document.querySelector('#catalogGrid').innerHTML=quotes.map(q=>{const gpu=q.items.find(i=>String(i.part).includes('GPU')),cpu=q.items.find(i=>i.part==='CPU');return`<article class="product"><div class="product-code">${esc(q.code)}</div><h4>${esc(q.name)}</h4><div class="product-spec">${esc(cpu?.spec||'服务器CPU')}<br>${gpu?`${gpu.quantity} × ${esc(gpu.spec)}`:'按需配置GPU'}<br>${q.items.length} 项标准部件 · ${q.count||1} 台</div><div class="product-price">${money(calcTotal(q))} / 台</div></article>`}).join('')}
+
+function renderHistory(){
+
+ const parts=[{name:'RTX PRO 6000 96GB',price:Math.max(...quotes.flatMap(q=>q.items.filter(i=>String(i.part).includes('GPU')).map(i=>num(i.unitPrice)))),move:'+12.0%',up:true},{name:'64GB DDR5 ECC',price:Math.max(...quotes.flatMap(q=>q.items.filter(i=>String(i.part).includes('内存')).map(i=>num(i.unitPrice)))),move:'+8.6%',up:true},{name:'Xeon 8558 / 6530P',price:Math.max(...quotes.flatMap(q=>q.items.filter(i=>i.part==='CPU').map(i=>num(i.unitPrice)))),move:'+2.3%',up:true},{name:'企业级 NVMe SSD',price:Math.max(...quotes.flatMap(q=>q.items.filter(i=>i.part==='SSD').map(i=>num(i.unitPrice)))),move:'-1.8%',up:false},{name:'ConnectX 高速网卡',price:Math.max(...quotes.flatMap(q=>q.items.filter(i=>String(i.part).includes('网卡')).map(i=>num(i.unitPrice)))),move:'+3.1%',up:true}];
+
+ const max=Math.max(...parts.map(p=>p.price));document.querySelector('#historyRows').innerHTML=parts.map(p=>`<div class="history-row"><b>${p.name}</b><div class="bar"><i class="${p.up?'orange':''}" style="width:${p.price/max*100}%"></i></div><span class="money">${money(p.price)}</span><b class="${p.up?'trend-up':'trend-down'}">${p.move}</b></div>`).join('')
+
+}
+
+function showPage(id,title){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelector('#topTitle').innerHTML=`${esc(title)}<small>${id==='quotes'?'报价数据与市场价格联动':'系统概览与统计数据'}</small>`}
+
+
+
+document.querySelectorAll('.nav button').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.nav button').forEach(n=>n.classList.remove('active'));btn.classList.add('active');showPage(btn.dataset.page,btn.dataset.title)});
+
+['intelSearch','regionFilter','typeFilter','riskFilter'].forEach(id=>document.querySelector('#'+id).addEventListener('input',renderIntelligence));
+
+document.querySelector('#editBtn').onclick=()=>{editing=true;renderQuote();toast('联动编辑已开启：修改数字即可看到全部结果变化')};
+
+document.querySelector('#saveBtn').onclick=async()=>{const body=new URLSearchParams({action:'save',csrf,data:JSON.stringify(quotes)});const res=await fetch('./',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body});const json=await res.json();if(!res.ok){toast(json.message||'保存失败');return}editing=false;renderQuote();refreshDashboard();toast(json.message)};
+
+document.querySelector('#checkSources').onclick=()=>{const btn=document.querySelector('#checkSources');btn.disabled=true;btn.textContent='正在检测 44 个来源…';setTimeout(()=>{btn.disabled=false;btn.textContent='检测全部来源';toast('检测完成：25 个正常，19 个需要修复或更换地址')},1200)};
+
+document.querySelector('#generateReport').onclick=()=>{const now=new Date().toLocaleString('zh-CN',{hour12:false});reports.unshift({title:'AI算力市场即时分析报告',time:now,status:'刚刚生成',content:`系统分析了${intelligence.length}条重点情报和${quotes.length}套报价：GPU成本暴露较高，亚洲渠道涨价和内存短缺是当前主要价格风险。建议报价有效期3天，并对高配方案分别锁定GPU与内存价格。`});renderReports();toast('最新智能周报已生成')};
+
+document.querySelector('#dashboardTime').textContent='更新于 '+new Date().toLocaleString('zh-CN',{hour12:false});
+
+refreshDashboard();renderIntelligence();renderSources();renderReports();renderTabs();renderQuote();renderCatalog();renderHistory();
+
+</script>
+
+<script>
+
+const wsProducts=[
+
+{cat:'桌面AI工作站',name:'NeoFrog A2000',spec:'NVIDIA Jetson Thor T5000 · Blackwell GPU 2560 CUDA · 2,070 TFLOPS(FP4 sparse) · 128GB LPDDR5X · 2TB NVMe · 液冷',price:'¥ 66,000 – 70,000',usd:'$9,700 – 10,300'},
+
+{cat:'桌面AI工作站',name:'NeoFrog A2000N',spec:'NVIDIA Jetson Thor T5000 · 多盘位扩展 · 面向大模型部署 · 128GB LPDDR5X · 2TB NVMe',price:'¥ ≈ 60,000',usd:'≈ $8,800'},
+
+{cat:'桌面AI工作站',name:'NeoFrog A120N',spec:'AMD Ryzen AI Max+ 395 · Radeon 8060S · NPU 120 TOPS · 128GB LPDDR5X-7500 · 1TB NVMe · 液冷',price:'¥ 29,000 – 30,000',usd:'$4,280 – 4,420'},
+
+{cat:'桌面AI工作站',name:'NeoFrog M50',spec:'摩尔线程长江(Changjiang) SoC · 50 TOPS(INT8) · 32GB(可选16/32/64G) · 掌上尺寸 · 轻办公AI',price:'¥ 10,000',usd:'$1,470'},
+
+{cat:'MiniPC计算盒',name:'M12-GF800',spec:'Glefly GF800 8核ARM (Cortex-A78) · 8 TOPS · LPDDR4/X 8GB · PCIe M.2+eMMC 256GB',price:'¥ 1,500 – 1,700',usd:'$220 – 250'},
+
+{cat:'MiniPC计算盒',name:'M12-IDN150',spec:'Intel N95/N100/N150/N200 · 7×24 常开低功耗 · DDR4/DDR5 8GB · 256GB（N150 现货紧张）',price:'¥ 1,500 – 1,700',usd:'$220 – 250'},
+
+{cat:'MiniPC计算盒',name:'M12-AP3501',spec:'AMD 3501 x86 高性价比 · Vega8 核显 · DDR4 8GB · 256GB NVMe',price:'¥ 1,400 – 1,700',usd:'$210 – 250'},
+
+{cat:'MiniPC计算盒',name:'M12-IDL26',spec:'Intel 12/13代 i5-13450HX 标配 · Iris Xe 核显 · DDR4 8GB 可至64G · 512GB NVMe',price:'¥ 2,700 – 2,800',usd:'$400 – 410'},
+
+{cat:'MiniPC计算盒',name:'M12-7540U',spec:'AMD R7 7735H/7540U · 80 TOPS 全能高性能 · Radeon 780M · LPDDR5 16GB · 512GB',price:'¥ 2,700 – 2,800',usd:'$400 – 410'},
+
+{cat:'MiniPC计算盒',name:'M12-LUL256V',spec:'Intel Lunar-H Core Ultra 7 256V · NPU 45 TOPS · Arc 140V · 16GB 内置 · 512GB',price:'¥ 4,200 – 4,500',usd:'$620 – 660'},
+
+{cat:'MiniPC计算盒',name:'M12-CP8108',spec:'芯擎 CP8180 12核64位 ARM vmv9.2 · NPU 45 TOPS · LPDDR5X-6400 至32GB · 全国产',price:'¥ 4,300 – 5,000',usd:'$630 – 740'},
+
+{cat:'MiniPC计算盒',name:'M12-M1000',spec:'摩尔线程长江(Changjiang) SoC · 50 TOPS INT8 · 高性能3D渲染 · LPDDR5 至64G · 全国产',price:'¥ 6,800 – 7,000',usd:'$1,000 – 1,030'},
+
+{cat:'AI服务器',name:'EdgeFrog NC800',spec:'8×GPU 高密度高性能边缘推理服务器 · 13,000 TFLOPS(FP8) · 至强4/5代 · 32×DDR5 至8TB · 液冷支持',price:'价格面议',usd:'按配置与数量'},
+
+{cat:'AI微节点',name:'EdgeFrog CA24',spec:'单柜一体 · 24 GPUs · 3计算节点 · 20kW制冷 · UPS 15分钟 · 触摸屏监控',price:'价格面议',usd:'按配置与数量'},
+
+{cat:'AI微节点',name:'EdgeFrog CA40',spec:'三柜模块化 · 40 GPUs · 5计算节点 · 40kW制冷 · UPS 15分钟',price:'价格面议',usd:'按配置与数量'},
+
+{cat:'AI微节点',name:'EdgeFrog CA80',spec:'四柜集中式 · 80 GPUs · 10计算节点 · 70kW制冷 · 双路冗余光互连',price:'价格面议',usd:'按配置与数量'},
+
+{cat:'AI微节点',name:'EdgeFrog CA128',spec:'六柜高密度 · 128 GPUs · 16计算节点 · 120kW制冷 · 冗余双交换',price:'价格面议',usd:'按配置与数量'},
+
+{cat:'塔式AI工作站',name:'NeoFrog T248',spec:'Hygon 5400 ×2 + MetaX 曦云C500 ×2 · 全栈国产 · 960 TOPS(INT8) · 128GB RDIMM · 64GB HBM2e · 全液冷',price:'¥ 200,000',usd:'$29,500'},
+
+{cat:'塔式AI工作站',name:'NeoFrog T400',spec:'Intel Xeon LGA4677 385W · 4×GPU 全高全长双宽 · 6,500 TFLOPS(FP8) · 16×DDR5 至4TB · 液冷/风冷',price:'¥ 400,000',usd:'$59,000'}
+
+];
+
+document.querySelector('#wsGrid').innerHTML = wsProducts.map(p=>`<article class="product"><div class="product-code">${esc(p.cat)}</div><h4>${esc(p.name)}</h4><div class="product-spec">${esc(p.spec)}</div><div class="product-price">${esc(p.price)}<br><small style="font-size:12px;color:#7b879a;font-weight:400">${esc(p.usd)}</small></div></article>`).join('');
+
+</script>
+
+<script src="quote-static.js"></script></body></html>
